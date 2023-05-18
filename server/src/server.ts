@@ -1,4 +1,4 @@
-import fastify from 'fastify';
+import fastify from 'fastify'; // cria os conceitos de GET,POST,READ,PATCH dentro do node
 import { PrismaClient } from '@prisma/client'; //importa o cliente para ser visto as infos
 
 const app = fastify() //Cria a aplicação dentro de um servidor HTTP
@@ -16,4 +16,4 @@ app
   })
   .then(() =>{
     console.log('HTTP server is on in http://localhost:3333')
-  }) // o then é uma concatenação na qual faz com que retorne a ação da promise
+  }) // o then é uma concatenação na qual faz com que retorne a ação da promise de outro modo
