@@ -1,14 +1,17 @@
 import fastify from 'fastify'; // cria os conceitos de GET,POST,READ,PATCH dentro do node
-import { PrismaClient } from '@prisma/client'; //importa o cliente para ser visto as infos
+import { memoriesRoutes } from './routes/memories';
+import cors from '@fastify/cors'
+//import { PrismaClient } from '@prisma/client'; //importa o cliente para ser visto as infos
 
 const app = fastify() //Cria a aplicação dentro de um servidor HTTP
-const prisma = new PrismaClient() // faz conexao com o banco
+//const prisma = new PrismaClient() // faz conexao com o banco
 
-app.get('/users', async() =>{ // função assincrona
-  const users = await prisma.user.findMany() // lista todos os users
-  return users
+app.register(memoriesRoutes)
+
+app.register(cors, {
+  origin: true //todas urls podem acessar
+
 })
-
 app
   .listen({
     port:3333, // a porta que esse servidor vai rodar no local
