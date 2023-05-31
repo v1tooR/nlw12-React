@@ -1,12 +1,16 @@
+import 'dotenv/config'
+
 import fastify from 'fastify'; // cria os conceitos de GET,POST,READ,PATCH dentro do node
 import { memoriesRoutes } from './routes/memories';
 import cors from '@fastify/cors'
+import { authRoutes } from './routes/auth';
 //import { PrismaClient } from '@prisma/client'; //importa o cliente para ser visto as infos
 
 const app = fastify() //Cria a aplicação dentro de um servidor HTTP
 //const prisma = new PrismaClient() // faz conexao com o banco
 
 app.register(memoriesRoutes)
+app.register(authRoutes)
 
 app.register(cors, {
   origin: true //todas urls podem acessar
