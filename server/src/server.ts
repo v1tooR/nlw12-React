@@ -3,6 +3,7 @@ import 'dotenv/config'
 import fastify from 'fastify'; // cria os conceitos de GET,POST,READ,PATCH dentro do node
 import { memoriesRoutes } from './routes/memories';
 import cors from '@fastify/cors'
+import jwt from '@fastify/jwt'
 import { authRoutes } from './routes/auth';
 //import { PrismaClient } from '@prisma/client'; //importa o cliente para ser visto as infos
 
@@ -16,6 +17,11 @@ app.register(cors, {
   origin: true //todas urls podem acessar
 
 })
+app.register(jwt, {
+  secret: 'spacetime' , // uma forma de criptografia do token, 
+  //ou seja, não pode ser alterado por outra API
+})
+
 app
   .listen({
     port:3333, // a porta que esse servidor vai rodar no local

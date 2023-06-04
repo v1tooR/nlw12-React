@@ -4,7 +4,9 @@ import { z } from 'zod'
 
 export async function memoriesRoutes(app: FastifyInstance){
 /**METODO LISTA */
-  app.get('/memories', async() =>{ // listagem da memoria
+  app.get('/memories', async(request) =>{ // listagem da memoria
+    await request.jwtVerify() //garante na requisição se esta vindo o token
+
     const memories = await prisma.memory.findMany({
       orderBy: {
         createdAt: 'asc', //crescente
