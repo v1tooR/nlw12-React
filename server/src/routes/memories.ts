@@ -98,4 +98,6 @@ export async function memoriesRoutes(app: FastifyInstance){
 
     return memory
   })
-}
+} 
+
+let myTime = 44
