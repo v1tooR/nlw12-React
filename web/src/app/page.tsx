@@ -1,15 +1,19 @@
  //otimização por parte do Next para a imagem permanecer leve
 import { User } from 'lucide-react'
 
+import {cookies} from 'next/headers'
 
 import { Copyright } from '@/components/Copyright'
 import { TextHero } from '@/components/TextHero'
 import { Login } from '@/components/Login'
 import { EmptyMemory } from '@/components/EmptyMemory'
+import { Profile } from '@/components/Profile'
 //Typescript + JSX = TSX
 //JSX = JS + XML
 
 export default function Home() { //Componente é uma função que retorna seu conteudo
+  const isAuthenticated = cookies().has('token')
+  
   return ( //o tailwind é uma forma de resumir o que fariamos no css, mas isso sendo inline
     <main className='grid grid-cols-2 min-h-screen'>
       {/**Esquerda */}
@@ -18,7 +22,7 @@ export default function Home() { //Componente é uma função que retorna seu co
         <div className='absolute right-0 top-1/2 h-[288px] w-[526px] -translate-y-1/2 translate-x-1/2 rounded-full bg-purple-700 opacity-50 blur-full'></div>
         {/**Stripes */}
         <div className='absolute right-2 top-0 bottom-0 w-2 bg-stripes '></div>
-          <Login/>
+          {isAuthenticated ? <Profile/>:  <Login/>}
           <TextHero/>
           <Copyright/>
       </div>
