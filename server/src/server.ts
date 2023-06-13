@@ -24,7 +24,9 @@ app.register(jwt, {
 
 app
   .listen({
-    port:3333, // a porta que esse servidor vai rodar no local
+    port:3333,
+    host: '0.0.0.0',
+    // a porta que esse servidor vai rodar no local
     // (promise) é algo que vai acontecer mas pode demorar
   })
   .then(() =>{
